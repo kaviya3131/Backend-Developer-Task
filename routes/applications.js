@@ -2,7 +2,7 @@ const express = require("express");
 const pool = require("../db"); // PostgreSQL connection
 const router = express.Router();
 
-// ✅ POST /applications → Submit a job application
+// POST /applications → Submit a job application
 router.post("/", async (req, res) => {
     try {
         const { job_id, applicant_name, applicant_email, cover_letter } = req.body;
@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-// ✅ GET /applications → Fetch all applications
+// GET /applications → Fetch all applications
 router.get("/", async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM applications ORDER BY submitted_at DESC");
@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-// ✅ GET /applications/:job_id → Get applications for a specific job
+// GET /applications/:job_id → Get applications for a specific job
 router.get("/:job_id", async (req, res) => {
     try {
         const { job_id } = req.params;
